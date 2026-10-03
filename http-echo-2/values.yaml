@@ -1,0 +1,56 @@
+microservice:  
+  fullnameOverride: "http-echo-2"
+  workloadType: statefulset
+  replicaCount: 2
+  args:
+  - "--text=hello"
+
+  image:
+    repository: hashicorp/http-echo
+    tag: "0.2.3"
+    pullPolicy: IfNotPresent
+
+  containerPort: 5678
+  service:
+    port: 8082
+
+  ingress:
+    enabled: true
+    className: nginx
+    path: /hello-2
+    rewriteTarget: "/"
+
+  # autoscaling: # chỉ có hiệu lực khi workloadType=deployment
+  #   enabled: false
+  #   minReplicas: 2
+  #   maxReplicas: 5
+  #   targetCPUUtilizationPercentage: 70
+  #   targetMemoryUtilizationPercentage: 80
+
+  # No dedicated health endpoint in this app (API-only, no "/" or "/healthz" route) — reuse the
+  # existing business endpoint as a pragmatic probe target. Prefer adding a real /healthz route later.
+  livenessProbe:
+    path: /
+  readinessProbe:
+    path: /
+  startupProbe:
+    path: /
+
+  # Response body is random JSON (no fixed substring to assert) — only check HTTP 2xx.
+  test:
+    path: /
+    expectedText: "hello"
+
+  # ASP.NET Core may try to write Data Protection keys/temp files even with readOnlyRootFilesystem;
+  # mount a writable scratch dir to avoid a CrashLoop if/when that code path is hit.
+  extraVolumes:
+    - name: tmp
+      emptyDir: {}
+  extraVolumeMounts:
+    - name: tmp
+      mountPath: /tmp
+
+  # replicaCount=1 (default) + minAvailable=1 (default) would block all voluntary eviction/node drain.
+  # podDisruptionBudget:
+  #   minAvailable: 0
+  #   maxUnavailable: 1

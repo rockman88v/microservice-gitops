@@ -1,0 +1,40 @@
+microservice:
+  fullnameOverride: "myservice-prod"
+  #replicaCount: 4
+  workloadType: deployment
+  image:
+    repository: rockman88v/playstudios-myservice
+    tag: "v1.0.0"
+    pullPolicy: IfNotPresent
+
+  resources:
+    requests: { cpu: 200m, memory: 400Mi }
+    limits: { memory: 800Mi } 
+
+  ingress:
+    enabled: true
+    host: myservice-prod.local
+
+  topologySpreadConstraints: []
+  affinity:
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+          - key: app.kubernetes.io/instance
+            operator: In
+            values:
+            - myservice
+        topologyKey: "kubernetes.io/hostname"
+
+  autoscaling: # chỉ có hiệu lực khi workloadType=deployment
+    enabled: true
+    minReplicas: 4
+    maxReplicas: 8
+    targetCPUUtilizationPercentage: 70
+    targetMemoryUtilizationPercentage: 80
+
+  # replicaCount=1 (default) + minAvailable=1 (default) would block all voluntary eviction/node drain.
+  podDisruptionBudget:
+    #minAvailable: 2
+    maxUnavailable: 2

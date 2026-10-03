@@ -1,0 +1,6 @@
+dependencies:
+- name: microservice-chart
+  repository: oci://ghcr.io/rockman88v/helm-charts
+  version: 0.1.0
+digest: sha256:599c31c8669236c933b62890b3b29d0dc588dafd1e64ee0b6d97ebb150bcc5f9
+generated: "2026-10-03T07:28:53.999840221Z"
