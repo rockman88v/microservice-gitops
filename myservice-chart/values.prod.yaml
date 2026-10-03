@@ -36,5 +36,5 @@ microservice:
 
   # replicaCount=1 (default) + minAvailable=1 (default) would block all voluntary eviction/node drain.
   podDisruptionBudget:
-    #minAvailable: 2
+    minAvailable: null
     maxUnavailable: 2
