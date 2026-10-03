@@ -5,6 +5,7 @@ microservice:
   image:
     repository: rockman88v/playstudios-myservice
     tag: "v1.0.0"
+    digest: ""
     pullPolicy: IfNotPresent
 
   resources:
