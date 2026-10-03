@@ -4,7 +4,7 @@ microservice:
   workloadType: deployment
   image:
     repository: rockman88v/playstudios-myservice
-    tag: "77ef2b77001afe69f4c882fa6f224ca1efa7846e"
+    tag: "c4195bb397fec386759a7c4775352557c50683d6"
     digest: "sha256:66f2297144ca98c1434aab65710fff86018d19bcf1de6a1a5ecdca2359545609"
     pullPolicy: IfNotPresent
 
