@@ -4,13 +4,13 @@ microservice:
   workloadType: deployment
   image:
     repository: rockman88v/playstudios-myservice
-    tag: "v1.0.0"
-    digest: ""
+    tag: "77ef2b77001afe69f4c882fa6f224ca1efa7846e"
+    digest: "sha256:66f2297144ca98c1434aab65710fff86018d19bcf1de6a1a5ecdca2359545609"
     pullPolicy: IfNotPresent
 
   resources:
-    requests: { cpu: 50m, memory: 32Mi }
-    limits: { memory: 64Mi } 
+    requests: {cpu: 50m, memory: 32Mi}
+    limits: {memory: 64Mi}
 
   ingress:
     enabled: true
