@@ -4,14 +4,14 @@ microservice:
   workloadType: deployment
   image:
     repository: 818600128395.dkr.ecr.ap-southeast-1.amazonaws.com/playstudio/myservice
-    tag: "v1.0.0"
-    digest: ""
+    tag: "4079f0f364f1be18fd9c7f0061d5dddebadb3c56"
+    digest: "sha256:66f2297144ca98c1434aab65710fff86018d19bcf1de6a1a5ecdca2359545609"
     pullPolicy: IfNotPresent
   imagePullSecrets:
   - name: ecr-secret
   resources:
-    requests: { cpu: 200m, memory: 400Mi }
-    limits: { memory: 800Mi } 
+    requests: {cpu: 200m, memory: 400Mi}
+    limits: {memory: 800Mi}
 
   ingress:
     enabled: true
@@ -38,5 +38,5 @@ microservice:
 
   # replicaCount=1 (default) + minAvailable=1 (default) would block all voluntary eviction/node drain.
   podDisruptionBudget:
-    minAvailable: null
+    minAvailable:
     maxUnavailable: 2
