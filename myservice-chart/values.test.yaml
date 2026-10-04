@@ -4,7 +4,7 @@ microservice:
   workloadType: deployment
   image:
     repository: 818600128395.dkr.ecr.ap-southeast-1.amazonaws.com/playstudio/myservice
-    tag: "a57aad348b7dd765b171921a0409f91a6c2cd9c3"
+    tag: "3221e5770816752796fa70e18f07fc7997bdb732"
     digest: "sha256:66f2297144ca98c1434aab65710fff86018d19bcf1de6a1a5ecdca2359545609"
     pullPolicy: IfNotPresent
   imagePullSecrets:
