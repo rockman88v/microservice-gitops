@@ -3,11 +3,12 @@ microservice:
   #replicaCount: 4
   workloadType: deployment
   image:
-    repository: rockman88v/playstudios-myservice
+    repository: 818600128395.dkr.ecr.ap-southeast-1.amazonaws.com/playstudio/myservice
     tag: "v1.0.0"
     digest: ""
     pullPolicy: IfNotPresent
-
+  imagePullSecrets:
+  - name: ecr-secret
   resources:
     requests: { cpu: 200m, memory: 400Mi }
     limits: { memory: 800Mi } 
