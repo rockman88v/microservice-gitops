@@ -7,7 +7,8 @@ microservice:
     tag: "e0ef6f51a98d06df9ad620b45e4ea59e8f21af85"
     digest: "sha256:66f2297144ca98c1434aab65710fff86018d19bcf1de6a1a5ecdca2359545609"
     pullPolicy: IfNotPresent
-
+  imagePullSecrets:
+    - name: ecr-secret
   resources:
     requests: {cpu: 50m, memory: 32Mi}
     limits: {memory: 64Mi}
